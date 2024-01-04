@@ -1,10 +1,12 @@
-﻿namespace FinanceFunctions
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace FinanceFunctions
 {
     public class ProjectAppraisal
     {
 
             /// <summary>
-            ///
+            /// Converts a given percentage value into its corresponding decimal variation.
             /// </summary>
             /// <param name="rate">Rate to convert (e.g. 44.44)</param>
             /// <returns>Percentage in decimal form</returns>
@@ -14,7 +16,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Converts a given decimal value into its corresponding percentage variation.
             /// </summary>
             /// <param name="rate">Rate to convert (e.g. 0.23)</param>
             /// <returns>Decimal in percentage form</returns>
@@ -24,7 +26,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Adjusts the number of periods and associated rate based on the frequency provided.
             /// </summary>
             /// <param name="frequency">Compounding frequency ("biAnnual", "quarterly", "monthly", "weekly")</param>
             /// <param name="numPeriods">Number of periods to convert</param>
@@ -32,6 +34,13 @@
             /// <returns>A list of objects containing the adjusted rate and number of periods respectively</returns>
             public List<object> AdjustCompoundingRate(string frequency, int numPeriods, double rate)
             {
+                List<string> checkInput = new List<string>() { "biAnnual", "quarterly", "monthly", "weekly" };
+
+                if(!checkInput.Contains(frequency))
+                {
+                    throw new Exception("Frequency must be one of the following: biAnnual, quarterly, monthly, or weekly");
+                }
+
                 List<object> ratesAdjusted = new List<object>();
                 int compoundingFrequency = 1;
                 switch (frequency)
@@ -61,7 +70,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the required rate of return associated with the future value, present value, and number of periods provided.
             /// </summary>
             /// <param name="futureValue">Future value of capital</param>
             /// <param name="presentValue">Present value of capital</param>
@@ -74,7 +83,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the number of periods associated with the future value, present value, and discount rate provided.
             /// </summary>
             /// <param name="futureValue">Future value of capital</param>
             /// <param name="presentValue">Present value of capital</param>
@@ -87,7 +96,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the present value of an asset.
             /// </summary>
             /// <param name="futureValue">Future value of capital</param>
             /// <param name="numPeriods">Number of periods capital is held</param>
@@ -101,7 +110,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the present value of an asset using continuous compounding.
             /// </summary>
             /// <param name="futureValue">Future value of capital</param>
             /// <param name="numPeriods">Number of periods capital is held</param>
@@ -115,7 +124,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the future value of an asset.
             /// </summary>
             /// <param name="presentValue">Present value of capital</param>
             /// <param name="numPeriods">Number of periods capital is held</param>
@@ -129,7 +138,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the future value of an asset using continuous compounding.
             /// </summary>
             /// <param name="presentValue">Present value of capital</param>
             /// <param name="numPeriods">Number of periods capital is held</param>
@@ -143,7 +152,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the present value of an ordinary annuity.
             /// </summary>
             /// <param name="cashflow">Value of persisting cashflow</param>
             /// <param name="numPeriods">Number of periods annuity is active for</param>
@@ -157,7 +166,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the present value of a due annuity.
             /// </summary>
             /// <param name="cashflow">Value of persisting cashflow</param>
             /// <param name="numPeriods">Number of periods annuity is active for</param>
@@ -171,7 +180,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the future value of an ordinary annuity.
             /// </summary>
             /// <param name="cashflow">Value of persisting cashflow</param>
             /// <param name="numPeriods">Number of periods annuity is active for</param>
@@ -185,7 +194,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the future value of a due annuity.
             /// </summary>
             /// <param name="cashflow">Value of persisting cashflow</param>
             /// <param name="numPeriods">Number of periods annuity is active for</param>
@@ -199,7 +208,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the present value of an ordinary perpetuity.
             /// </summary>
             /// <param name="cashflow">Value of persisting cashflow</param>
             /// <param name="discountRate">Discount rate applied to perpetuity (e.g. 44.44)</param>
@@ -212,7 +221,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the present value of a due perpetuity.
             /// </summary>
             /// <param name="cashflow">Value of persisting cashflow</param>
             /// <param name="discountRate">Discount rate applied to perpetuity (e.g. 44.44)</param>
@@ -225,7 +234,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the effective annual rate.
             /// </summary>
             /// <param name="interestRate">Interest rate (e.g. 44.44)</param>
             /// <param name="numPeriods">Number of periods interest rate is effective</param>
@@ -238,7 +247,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the effective annual rate using continuous compounding.
             /// </summary>
             /// <param name="interestRate">Interest rate (e.g. 44.44)</param>
             /// <returns>Effective annual rate under continuous compounding</returns>
@@ -250,7 +259,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the real interest rate.
             /// </summary>
             /// <param name="nominalInterestRate">Nominal interest rate (e.g. 44.44)</param>
             /// <param name="inflationRate">Inflation rate (e.g. 44.44)</param>
@@ -264,7 +273,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the net present value of a project.
             /// </summary>
             /// <param name="cashflows">List of cashflows starting with initial investment and sequential cashflows following</param>
             /// <param name="opCostCapital">Opportunity cost of capital (e.g. 44.44)</param>
@@ -281,7 +290,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the payback period of a project.
             /// </summary>
             /// <param name="cashflows">List of cashflows starting with initial investment and sequential cashflows following</param>
             /// <returns>Payback period of a series of cashflows</returns>
@@ -308,7 +317,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the discounted payback period of a project.
             /// </summary>
             /// <param name="cashflows">List of cashflows starting with initial investment and sequential cashflows following</param>
             /// <param name="discountRate">Discount rate applied to each subsequent cashflow (e.g. 44.44)</param>
@@ -337,7 +346,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the accounting rate of return on a project.
             /// </summary>
             /// <param name="cashflows">List of cashflows starting with initial investment and sequential cashflows following</param>
             /// <param name="lifecycle">Project duration</param>
@@ -365,7 +374,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the internal rate of return on a project.
             /// </summary>
             /// <param name="cashflows">List of cashflows starting with initial investment and sequential cashflows following</param>
             /// <returns>Internal rate of return on a series of cashflows in percentage form</returns>
@@ -388,7 +397,7 @@
             }
 
             /// <summary>
-            /// 
+            /// Calculates the profitability index of a project.
             /// </summary>
             /// <param name="cashflows">List of cashflows starting with initial investment and sequential cashflows following</param>
             /// <param name="discountRate">Discount rate applied to each subsequent cashflow (e.g. 44.44)</param>

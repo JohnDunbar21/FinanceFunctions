@@ -9,7 +9,7 @@ namespace FinanceFunctions
     public class StocksAndBonds
     {
         /// <summary>
-        ///
+        /// Converts a given percentage value into its corresponding decimal variation.
         /// </summary>
         /// <param name="rate">Rate to convert (e.g. 44.44)</param>
         /// <returns>Percentage in decimal form</returns>
@@ -19,7 +19,7 @@ namespace FinanceFunctions
         }
 
         /// <summary>
-        /// 
+        /// Converts a given decimal value into its corresponding percentage variation.
         /// </summary>
         /// <param name="rate">Rate to convert (e.g. 0.23)</param>
         /// <returns>Decimal in percentage form</returns>
