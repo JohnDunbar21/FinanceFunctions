@@ -187,7 +187,7 @@ namespace FinanceFunctions
         /// <param name="expectedFutureValue">Future value of the bond</param>
         /// <param name="faceValue">Price paid (par value) for the bond</param>
         /// <param name="bondLifespan">Lifespan of the bond</param>
-        /// <returns></returns>
+        /// <returns>Return on a zero coupon bond</returns>
         public double ZeroCouponBondReturn(double expectedFutureValue, double faceValue, int bondLifespan)
         {
             double calculation = Math.Pow((expectedFutureValue / faceValue), (1 / (double)bondLifespan)) - 1;
